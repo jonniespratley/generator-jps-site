@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  var JsblogGenerator, chalk, path, util, yeoman;
+  var JpsSiteGenerator, chalk, path, util, yeoman;
 
   util = require('util');
 
@@ -10,9 +10,9 @@
 
   chalk = require('chalk');
 
-  module.exports = JsblogGenerator = yeoman.generators.Base.extend();
+  module.exports = JpsSiteGenerator = yeoman.generators.Base.extend();
 
-  JsblogGenerator.prototype.init = function() {
+  JpsSiteGenerator.prototype.init = function() {
     this.on('end', function() {
       if (!this.options['skip-install']) {
         return this.installDependencies();
@@ -21,71 +21,89 @@
     return this.pkg = require('../package.json');
   };
 
-  JsblogGenerator.prototype.askFor = function() {
+  JpsSiteGenerator.prototype.askFor = function() {
     var done, prompts;
     done = this.async();
     this.log(this.yeoman);
-    this.log(chalk.yellow('You are using the JS Blog Yeoman generator.'));
+    this.log(chalk.yellow('You are using the JPS Site Yeoman generator.'));
     prompts = [
       {
         type: 'input',
-        name: 'blogName',
-        message: 'What is the name of your blog?',
-        "default": 'My Blog'
+        name: 'siteTitle',
+        message: 'What is the name of your site',
+        "default": 'My Site'
+      }, {
+        type: 'input',
+        name: 'siteDesc',
+        message: 'What is the site description?',
+        "default": 'A modern site built with a Yeoman Generator.'
       }, {
         type: 'input',
         name: 'featureTitle',
         message: 'What is the feature?',
-        "default": 'Modern Blog'
+        "default": 'Modern Site'
       }, {
         type: 'input',
-        name: 'featureDesc',
+        name: 'featureBody',
         message: 'The feature description?',
-        "default": 'A modern blog using modern tools & technologies.'
+        "default": 'A modern site using modern tools & technologies.'
       }, {
         type: 'input',
-        name: 'featureImg',
+        name: 'featureImage',
         message: 'The feature image?',
         "default": 'images/feature.png'
       }
     ];
     return this.prompt(prompts, (function(props) {
-      this.blogName = props.blogName;
+      this.siteTitle = props.siteTitle;
+      this.siteDesc = props.siteDesc;
       this.featureTitle = props.featureTitle;
-      this.featureDesc = props.featureDesc;
-      this.featureImg = props.featureImg;
+      this.featureBody = props.featureBody;
+      this.featureImage = props.featureImage;
       return done();
     }).bind(this));
   };
 
-  JsblogGenerator.prototype.appFolders = function() {
+  JpsSiteGenerator.prototype.appFolders = function() {
     this.mkdir('app');
     this.mkdir('app/images');
     this.mkdir('app/scripts');
     return this.mkdir('app/styles');
   };
 
-  JsblogGenerator.prototype.appFiles = function() {
+  JpsSiteGenerator.prototype.appFiles = function() {
     this.copy('feature.png', 'app/images/feature.png');
     this.template('_index.html', 'app/index.html');
     this.template('_main.js', 'app/scripts/main.js');
     return this.template('_main.css', 'app/styles/main.css');
   };
 
-  JsblogGenerator.prototype.projectfiles = function() {
-    this.copy('editorconfig', '.editorconfig');
-    this.copy('jshintrc', '.jshintrc');
+  JpsSiteGenerator.prototype.projectfiles = function() {
     this.template('_config.json', 'config.json');
     this.template('_package.json', 'package.json');
     return this.template('_Gruntfile.js', 'Gruntfile.js');
   };
 
-  JsblogGenerator.prototype.bowerFiles = function() {
-    this.template('_bower.json', 'bower.json');
-    return this.copy('bowerrc', '.bowerrc');
+  JpsSiteGenerator.prototype.bowerFiles = function() {
+    this.copy('bowerrc', '.bowerrc');
+    return this.template('_bower.json', 'bower.json');
   };
 
-  JsblogGenerator.prototype.bowerInstaller = function() {
+  JpsSiteGenerator.prototype.editorFiles = function() {
+    this.copy('editorconfig', '.editorconfig');
+    return this.copy('jshintrc', '.jshintrc');
+  };
+
+  JpsSiteGenerator.prototype.gitFiles = function() {
+    this.copy('gitignore', '.gitignore');
+    return this.copy('gitattributes', '.gitattributes');
+  };
+
+  JpsSiteGenerator.prototype.travisFiles = function() {
+    return this.copy('travis.yml', '.travis.yml');
+  };
+
+  JpsSiteGenerator.prototype.bowerInstaller = function() {
     return this.bowerInstall(['jquery', 'bootstrap'], {
       save: true
     });

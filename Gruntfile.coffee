@@ -13,6 +13,7 @@ module.exports = (grunt) ->
 		# Task configuration
 		jshint:
 			options:
+				jshintrc: true
 				node: true
 				curly: true
 				eqeqeq: true
@@ -59,7 +60,7 @@ module.exports = (grunt) ->
 	# Default task
 	grunt.registerTask 'default', [
 		'coffee'
-		'jshint'
-		'nodeunit'
+		#'jshint'
+		#'nodeunit'
 	]
 	return
