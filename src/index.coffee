@@ -14,38 +14,46 @@ JpsSiteGenerator::init = ->
 		@installDependencies()	unless @options['skip-install']
 	@pkg = require('../package.json')
 
+
 #askFor - Prompt the user for questions related to the project generating.
 JpsSiteGenerator::askFor = ->
 	done = @async()
 	@log @yeoman
-	@log chalk.yellow('You are using the JS Blog Yeoman generator.')
+	@log chalk.yellow('You are using the JPS Site Yeoman generator.')
 	
 	prompts = [
 			type: 'input'
-			name: 'blogName'
-			message: 'What is the name of your blog?'
-			default: 'My Blog'
+			name: 'siteTitle'
+			message: 'What is the name of your site'
+			default: 'My Site'
+		,
+			type: 'input'
+			name: 'siteDesc'
+			message: 'What is the site description?'
+			default: 'A modern site built with a Yeoman Generator.'
 		,
 			type: 'input'
 			name: 'featureTitle'
 			message: 'What is the feature?'
-			default: 'Modern Blog'
+			default: 'Modern Site'
 		,
 			type: 'input'
-			name: 'featureDesc'
+			name: 'featureBody'
 			message: 'The feature description?'
-			default: 'A modern blog using modern tools & technologies.'
+			default: 'A modern site using modern tools & technologies.'
 		,
 			type: 'input'
-			name: 'featureImg'
+			name: 'featureImage'
 			message: 'The feature image?'
 			default: 'images/feature.png'
 	]
 	@prompt prompts, ((props) ->
-			@blogName = props.blogName
+			@siteTitle = props.siteTitle
+			@siteDesc = props.siteDesc
+			
 			@featureTitle = props.featureTitle
-			@featureDesc = props.featureDesc
-			@featureImg = props.featureImg
+			@featureBody = props.featureBody
+			@featureImage = props.featureImage
 			done()
 		).bind(this)
 
@@ -66,17 +74,27 @@ JpsSiteGenerator::appFiles = ->
 
 #projectFiles - Copy all of the project specific files.
 JpsSiteGenerator::projectfiles = ->
-	@copy 'editorconfig', '.editorconfig'
-	@copy 'jshintrc', '.jshintrc'
-	
 	@template '_config.json', 'config.json'
 	@template '_package.json', 'package.json'
 	@template '_Gruntfile.js', 'Gruntfile.js'
 
 #bowerFiles - Copy all of the bower specific files.
 JpsSiteGenerator::bowerFiles = ->
-	@template '_bower.json', 'bower.json'
 	@copy 'bowerrc', '.bowerrc'
+	@template '_bower.json', 'bower.json'
+
+#editorFiles - Copy all files that handle code editing.
+JpsSiteGenerator::editorFiles = ->
+	@copy 'editorconfig', '.editorconfig'
+	@copy 'jshintrc', '.jshintrc'
+
+JpsSiteGenerator::gitFiles = ->
+	@copy 'gitignore', '.gitignore'
+	@copy 'gitattributes', '.gitattributes'
+	
+#travisFiles - Copy files for Travis CI.
+JpsSiteGenerator::travisFiles = ->
+	@copy 'travis.yml', '.travis.yml'
 
 #bowerInstaller - Execute the bower install with predefined libaries and save to the bower.json file.
 JpsSiteGenerator::bowerInstaller = ->

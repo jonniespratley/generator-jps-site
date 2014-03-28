@@ -11,12 +11,6 @@ module.exports = function(grunt) {
 	//Project tasks
 	grunt.initConfig({
 
-		// Project settings
-		config: {
-			app: 'app',
-			dist: 'dist'
-		},
-
 		//watch - This task will watch files and run tasks when files change.
 		watch: {
 			options: {
@@ -25,7 +19,7 @@ module.exports = function(grunt) {
 			},
 			//Watch for index file changes and build
 			livereload: {
-				files: ['index.html'],
+				files: ['app/index.html'],
 				tasks: ['build']
 			},
 			//Watch any bower changes and inject scripts.
@@ -45,7 +39,7 @@ module.exports = function(grunt) {
 			livereload: {
 				options: {
 					open: true,
-					base: ['.tmp', config.app]
+					base: ['.tmp', 'app']
 				}
 			}
 		},
