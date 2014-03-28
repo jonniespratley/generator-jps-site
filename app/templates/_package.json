@@ -1,5 +1,5 @@
 {
-	"name": "<%= _.slugify(blogName) %>",
+	"name": "<%= _.slugify(siteTitle) %>",
 	"private": true,
 	"version": "0.0.0",
 	"dependencies": {},

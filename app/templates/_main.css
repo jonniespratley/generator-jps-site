@@ -1,4 +1,4 @@
-/* Styles for <%= _.slugify(blogName) %> */
+/* Styles for <%= _.slugify(siteTitle) %> */
 body{
 	background: #fefefe;
 }
