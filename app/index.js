@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  var JsblogGenerator, chalk, path, util, yeoman;
+  var JpsSiteGenerator, chalk, path, util, yeoman;
 
   util = require('util');
 
@@ -10,9 +10,9 @@
 
   chalk = require('chalk');
 
-  module.exports = JsblogGenerator = yeoman.generators.Base.extend();
+  module.exports = JpsSiteGenerator = yeoman.generators.Base.extend();
 
-  JsblogGenerator.prototype.init = function() {
+  JpsSiteGenerator.prototype.init = function() {
     this.on('end', function() {
       if (!this.options['skip-install']) {
         return this.installDependencies();
@@ -21,7 +21,7 @@
     return this.pkg = require('../package.json');
   };
 
-  JsblogGenerator.prototype.askFor = function() {
+  JpsSiteGenerator.prototype.askFor = function() {
     var done, prompts;
     done = this.async();
     this.log(this.yeoman);
@@ -58,21 +58,21 @@
     }).bind(this));
   };
 
-  JsblogGenerator.prototype.appFolders = function() {
+  JpsSiteGenerator.prototype.appFolders = function() {
     this.mkdir('app');
     this.mkdir('app/images');
     this.mkdir('app/scripts');
     return this.mkdir('app/styles');
   };
 
-  JsblogGenerator.prototype.appFiles = function() {
+  JpsSiteGenerator.prototype.appFiles = function() {
     this.copy('feature.png', 'app/images/feature.png');
     this.template('_index.html', 'app/index.html');
     this.template('_main.js', 'app/scripts/main.js');
     return this.template('_main.css', 'app/styles/main.css');
   };
 
-  JsblogGenerator.prototype.projectfiles = function() {
+  JpsSiteGenerator.prototype.projectfiles = function() {
     this.copy('editorconfig', '.editorconfig');
     this.copy('jshintrc', '.jshintrc');
     this.template('_config.json', 'config.json');
@@ -80,12 +80,12 @@
     return this.template('_Gruntfile.js', 'Gruntfile.js');
   };
 
-  JsblogGenerator.prototype.bowerFiles = function() {
+  JpsSiteGenerator.prototype.bowerFiles = function() {
     this.template('_bower.json', 'bower.json');
     return this.copy('bowerrc', '.bowerrc');
   };
 
-  JsblogGenerator.prototype.bowerInstaller = function() {
+  JpsSiteGenerator.prototype.bowerInstaller = function() {
     return this.bowerInstall(['jquery', 'bootstrap'], {
       save: true
     });

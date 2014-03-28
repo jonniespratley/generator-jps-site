@@ -4,18 +4,18 @@ path = require('path')
 yeoman = require('yeoman-generator')
 chalk = require('chalk')
 
-# js-blog-generator - This is an example generator.
-module.exports = JsblogGenerator = yeoman.generators.Base.extend()
+# jps-site-generator - This is an example generator.
+module.exports = JpsSiteGenerator = yeoman.generators.Base.extend()
 
 #	 init - This method initializes the generator by loading the package.json file
 #	 and adding an event listener to the 'end' event of the generator.	 
-JsblogGenerator::init = ->
+JpsSiteGenerator::init = ->
 	@on 'end', ->
 		@installDependencies()	unless @options['skip-install']
 	@pkg = require('../package.json')
 
 #askFor - Prompt the user for questions related to the project generating.
-JsblogGenerator::askFor = ->
+JpsSiteGenerator::askFor = ->
 	done = @async()
 	@log @yeoman
 	@log chalk.yellow('You are using the JS Blog Yeoman generator.')
@@ -51,21 +51,21 @@ JsblogGenerator::askFor = ->
 
 
 #appFolders - Create all of the application specific folders.
-JsblogGenerator::appFolders = ->
+JpsSiteGenerator::appFolders = ->
 	@mkdir 'app'
 	@mkdir 'app/images'
 	@mkdir 'app/scripts'
 	@mkdir 'app/styles'
 	
 #appFiles - Copy all of the application specific files.
-JsblogGenerator::appFiles = ->
+JpsSiteGenerator::appFiles = ->
 	@copy 'feature.png', 'app/images/feature.png'
 	@template '_index.html', 'app/index.html'
 	@template '_main.js', 'app/scripts/main.js'
 	@template '_main.css', 'app/styles/main.css'
 
 #projectFiles - Copy all of the project specific files.
-JsblogGenerator::projectfiles = ->
+JpsSiteGenerator::projectfiles = ->
 	@copy 'editorconfig', '.editorconfig'
 	@copy 'jshintrc', '.jshintrc'
 	
@@ -74,12 +74,12 @@ JsblogGenerator::projectfiles = ->
 	@template '_Gruntfile.js', 'Gruntfile.js'
 
 #bowerFiles - Copy all of the bower specific files.
-JsblogGenerator::bowerFiles = ->
+JpsSiteGenerator::bowerFiles = ->
 	@template '_bower.json', 'bower.json'
 	@copy 'bowerrc', '.bowerrc'
 
 #bowerInstaller - Execute the bower install with predefined libaries and save to the bower.json file.
-JsblogGenerator::bowerInstaller = ->
+JpsSiteGenerator::bowerInstaller = ->
 	@bowerInstall([ 'jquery', 'bootstrap' ], save: true)
 
 
