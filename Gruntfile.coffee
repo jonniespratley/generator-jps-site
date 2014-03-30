@@ -38,8 +38,11 @@ module.exports = (grunt) ->
 					'test/**/*.js'
 				]
 
-		nodeunit:
-			files: ['test/**/*.js']
+		mochaTest:
+			src: [
+				'test/**/test-*.js'
+				'.tmp/test/**/test-*.js'
+			]
 
 		coffee:
 			compile:
@@ -50,17 +53,30 @@ module.exports = (grunt) ->
 				src: ['*.coffee']
 				dest: './app'
 				ext: '.js'
-
+			test:
+				expand: true
+				bare: true
+				flatten: true
+				cwd: './test'
+				src: ['*.coffee']
+				dest: 'test/'
+				ext: '.js'
+		clean:
+			test: ['.tmp', 'test/temp']
 		watch:
 			compile:
 				files: 'src/*.coffee'
 				tasks: ['coffee:compile']
+			test: 
+				files: 'test/**/test-*.coffee'
+				tasks: [ 'clean', 'coffee:test', 'mochaTest']
 
 	
 	# Default task
 	grunt.registerTask 'default', [
+		'clean'
 		'coffee'
 		#'jshint'
-		#'nodeunit'
+		'mochaTest'
 	]
 	return
