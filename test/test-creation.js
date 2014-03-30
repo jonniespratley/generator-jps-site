@@ -9,8 +9,8 @@
   require('chai').should();
 
   describe('jps-site generator', function() {
-    var mockFiles, mockQa;
-    mockQa = {
+    var mockAnswers, mockFiles;
+    mockAnswers = {
       siteTitle: 'My Test Site',
       siteDesc: 'A modern site build to test.',
       featureTitle: 'Mocha Tests',
@@ -21,21 +21,23 @@
     beforeEach(function(done) {
       return helpers.testDirectory(path.join(__dirname, 'temp'), (function(err) {
         if (err) {
-          return done(err);
+          done(err);
         }
         this.app = helpers.createGenerator('jps-site:app', ['../../app']);
         return done();
       }).bind(this));
     });
-    it('creates expected files', function(done) {
-      helpers.mockPrompt(this.app, mockQa);
+    return it('creates expected files', function(done) {
+      helpers.mockPrompt(this.app, mockAnswers);
       this.app.options['skip-install'] = true;
       return this.app.run({}, function() {
         helpers.assertFile(mockFiles);
+        helpers.assertFileContent('app/index.html', RegExp("<title>" + mockAnswers.siteTitle + "</title>"));
+        helpers.assertFileContent('app/index.html', RegExp("<h1>" + mockAnswers.featureTitle + "</h1>"));
+        helpers.assertFileContent('app/index.html', RegExp("" + mockAnswers.featureBody));
         return done();
       });
     });
-    return it('should have created the correct index.html file', function(done) {});
   });
 
 }).call(this);

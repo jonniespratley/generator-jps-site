@@ -10,11 +10,7 @@
 		<link rel="stylesheet" href="styles/main.css"/>
 	</head>
 	<body>
-		<!--[if lt IE 7]>
-		<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-		<![endif]-->
-
-
+	
 		<article class="container slim">
 			<header class="header">
 				<nav>
@@ -24,24 +20,20 @@
 						</li>
 					</ul>
 				</nav>
-				<h3 class="text-muted"> <%= _.capitalize(siteTitle) %> </h3>
+				<h3 class="text-muted"><%= _.capitalize(siteTitle) %></h3>
 				<hr/>
 			</header>
 
 			<section class="jumbotron center">
-				<h1> <%= _.capitalize(featureTitle) %> </h1>
+				<h1><%= _.capitalize(featureTitle) %></h1>
 				<img src="<%= featureImage %>" alt="<%= featureTitle %> image"/>
 				<p class="lead">
 					<%= _.capitalize(featureBody) %>
 				</p>
 			</section>
-			<section class="page">
-				
-			</section>
+			<section class="page"></section>
 		</article>
-		
-		
-		
+
 		<!-- bower:js -->
 		<!-- endbower -->
 		<script type="text/javascript" src="scripts/main.js"></script>
