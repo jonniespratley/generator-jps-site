@@ -11,9 +11,8 @@ module.exports = JpsSiteGenerator = yeoman.generators.Base.extend()
 #	 and adding an event listener to the 'end' event of the generator.	 
 JpsSiteGenerator::init = ->
 	@on 'end', ->
-		@installDependencies()	unless @options['skip-install']
+		@installDependencies()	if @options['skip-install'] isnt true
 	@pkg = require('../package.json')
-
 
 #askFor - Prompt the user for questions related to the project generating.
 JpsSiteGenerator::askFor = ->
@@ -21,7 +20,7 @@ JpsSiteGenerator::askFor = ->
 	@log @yeoman
 	@log chalk.yellow('You are using the JPS Site Yeoman generator.')
 	
-	prompts = [
+	@prompts = [
 			type: 'input'
 			name: 'siteTitle'
 			message: 'What is the name of your site'
@@ -47,7 +46,7 @@ JpsSiteGenerator::askFor = ->
 			message: 'The feature image?'
 			default: 'images/feature.png'
 	]
-	@prompt prompts, ((props) ->
+	@prompt @prompts, ((props) ->
 			@siteTitle = props.siteTitle
 			@siteDesc = props.siteDesc
 			
@@ -57,6 +56,14 @@ JpsSiteGenerator::askFor = ->
 			done()
 		).bind(this)
 
+#config - Set the prompt answers in the config.json file
+JpsSiteGenerator::config = ->
+	#Project settings
+	@config.set 'sitetitle', @siteTitle
+	@config.set 'feature.title', @featureTitle
+	#Generator settings
+	@config.set 'version', @pkg.version
+	
 
 #appFolders - Create all of the application specific folders.
 JpsSiteGenerator::appFolders = ->
@@ -68,20 +75,20 @@ JpsSiteGenerator::appFolders = ->
 #appFiles - Copy all of the application specific files.
 JpsSiteGenerator::appFiles = ->
 	@copy 'feature.png', 'app/images/feature.png'
-	@template '_index.html', 'app/index.html'
-	@template '_main.js', 'app/scripts/main.js'
-	@template '_main.css', 'app/styles/main.css'
+	@copy '_index.html', 'app/index.html'
+	@copy '_main.js', 'app/scripts/main.js'
+	@copy '_main.css', 'app/styles/main.css'
 
 #projectFiles - Copy all of the project specific files.
 JpsSiteGenerator::projectfiles = ->
-	@template '_config.json', 'config.json'
-	@template '_package.json', 'package.json'
-	@template '_Gruntfile.js', 'Gruntfile.js'
+	@copy '_config.json', 'config.json'
+	@copy '_package.json', 'package.json'
+	@copy '_Gruntfile.js', 'Gruntfile.js'
 
 #bowerFiles - Copy all of the bower specific files.
 JpsSiteGenerator::bowerFiles = ->
 	@copy 'bowerrc', '.bowerrc'
-	@template '_bower.json', 'bower.json'
+	@copy '_bower.json', 'bower.json'
 
 #editorFiles - Copy all files that handle code editing.
 JpsSiteGenerator::editorFiles = ->
@@ -98,6 +105,6 @@ JpsSiteGenerator::travisFiles = ->
 
 #bowerInstaller - Execute the bower install with predefined libaries and save to the bower.json file.
 JpsSiteGenerator::bowerInstaller = ->
-	@bowerInstall([ 'jquery', 'bootstrap' ], save: true)
+	@bowerInstall([ 'jquery', 'bootstrap' ], save: true) if @options['skip-install'] isnt true
 
 

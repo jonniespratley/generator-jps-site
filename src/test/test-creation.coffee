@@ -14,6 +14,7 @@ describe 'jps-site generator', ->
 		featureBody: 'A modern site created by a Yeoman generator.'
 		featureImage: 'images/feature.png'
 	
+	
 	mockFiles = [
 		'.bowerrc'
 		'.editorconfig'
@@ -35,7 +36,27 @@ describe 'jps-site generator', ->
 		#Add other files to check for here...
 		]
 	
-
+	mockFilePairs = [
+		[
+			'app/index.html', 
+			///
+				<title>#{mockAnswers.siteTitle}<\/title> 		#index > title = Site title
+			///
+		],
+		[
+			'app/index.html', 
+			///
+				<h1>#{mockAnswers.featureTitle}<\/h1> 			#index > .jumbotron h1
+			///
+		],
+		[
+			'app/index.html', 
+			///
+				#{mockAnswers.featureBody} 									#index > .jumbotron p
+			///
+		]
+	]
+	
 	#Before each test clean the test/temp folder and create a new generator.
 	beforeEach (done) ->
 		helpers.testDirectory path.join(__dirname, 'temp'), ((err) ->
@@ -59,18 +80,8 @@ describe 'jps-site generator', ->
 			#Assert files created match
 			helpers.assertFile(mockFiles)
 			
-			
 			#Assert file contents match
-			helpers.assertFileContent 'app/index.html', ///
-				<title>#{mockAnswers.siteTitle}<\/title> 							#index > title = Site title
-			///
-			helpers.assertFileContent 'app/index.html', ///
-				<h1>#{mockAnswers.featureTitle}<\/h1> 								#index > .jumbotron h1
-			///
-			helpers.assertFileContent 'app/index.html', ///
-				#{mockAnswers.featureBody} 														#index > .jumbotron p
-			///
-			
+			helpers.assertFileContent(mockFilePairs)
 			
 			done()
 		

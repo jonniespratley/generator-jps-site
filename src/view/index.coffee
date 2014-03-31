@@ -1,13 +1,15 @@
-"use strict"
-util = require("util")
-yeoman = require("yeoman-generator")
-PageGenerator = yeoman.generators.NamedBase.extend(
-  init: ->
-    console.log "You called the page subgenerator with the argument " + @name + "."
-    return
+'use strict'
+util = require('util')
+yeoman = require('yeoman-generator')
 
-  files: ->
-    @copy "somefile.js", "somefile.js"
-    return
+
+ViewGenerator = yeoman.generators.NamedBase.extend(
+	init: ->
+		console.log "You called the page subgenerator with the argument " + @name + "."
+	
+	files: ->
+		@copy '_view.html', "app/views/#{@name}"
+	
 )
-module.exports = PageGenerator
+
+module.exports = ViewGenerator

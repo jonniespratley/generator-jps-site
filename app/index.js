@@ -14,7 +14,7 @@
 
   JpsSiteGenerator.prototype.init = function() {
     this.on('end', function() {
-      if (!this.options['skip-install']) {
+      if (this.options['skip-install'] !== true) {
         return this.installDependencies();
       }
     });
@@ -22,11 +22,11 @@
   };
 
   JpsSiteGenerator.prototype.askFor = function() {
-    var done, prompts;
+    var done;
     done = this.async();
     this.log(this.yeoman);
     this.log(chalk.yellow('You are using the JPS Site Yeoman generator.'));
-    prompts = [
+    this.prompts = [
       {
         type: 'input',
         name: 'siteTitle',
@@ -54,7 +54,7 @@
         "default": 'images/feature.png'
       }
     ];
-    return this.prompt(prompts, (function(props) {
+    return this.prompt(this.prompts, (function(props) {
       this.siteTitle = props.siteTitle;
       this.siteDesc = props.siteDesc;
       this.featureTitle = props.featureTitle;
@@ -62,6 +62,12 @@
       this.featureImage = props.featureImage;
       return done();
     }).bind(this));
+  };
+
+  JpsSiteGenerator.prototype.config = function() {
+    this.config.set('sitetitle', this.siteTitle);
+    this.config.set('feature.title', this.featureTitle);
+    return this.config.set('version', this.pkg.version);
   };
 
   JpsSiteGenerator.prototype.appFolders = function() {
@@ -73,20 +79,20 @@
 
   JpsSiteGenerator.prototype.appFiles = function() {
     this.copy('feature.png', 'app/images/feature.png');
-    this.template('_index.html', 'app/index.html');
-    this.template('_main.js', 'app/scripts/main.js');
-    return this.template('_main.css', 'app/styles/main.css');
+    this.copy('_index.html', 'app/index.html');
+    this.copy('_main.js', 'app/scripts/main.js');
+    return this.copy('_main.css', 'app/styles/main.css');
   };
 
   JpsSiteGenerator.prototype.projectfiles = function() {
-    this.template('_config.json', 'config.json');
-    this.template('_package.json', 'package.json');
-    return this.template('_Gruntfile.js', 'Gruntfile.js');
+    this.copy('_config.json', 'config.json');
+    this.copy('_package.json', 'package.json');
+    return this.copy('_Gruntfile.js', 'Gruntfile.js');
   };
 
   JpsSiteGenerator.prototype.bowerFiles = function() {
     this.copy('bowerrc', '.bowerrc');
-    return this.template('_bower.json', 'bower.json');
+    return this.copy('_bower.json', 'bower.json');
   };
 
   JpsSiteGenerator.prototype.editorFiles = function() {
@@ -104,9 +110,11 @@
   };
 
   JpsSiteGenerator.prototype.bowerInstaller = function() {
-    return this.bowerInstall(['jquery', 'bootstrap'], {
-      save: true
-    });
+    if (this.options['skip-install'] !== true) {
+      return this.bowerInstall(['jquery', 'bootstrap'], {
+        save: true
+      });
+    }
   };
 
 }).call(this);
