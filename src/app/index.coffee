@@ -64,7 +64,6 @@ JpsSiteGenerator::config = ->
 	#Generator settings
 	@config.set 'version', @pkg.version
 	
-
 #appFolders - Create all of the application specific folders.
 JpsSiteGenerator::appFolders = ->
 	@mkdir 'app'
