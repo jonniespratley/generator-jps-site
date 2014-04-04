@@ -6,7 +6,4 @@ before_install:
   - if [ "$currentfolder" != 'generator-jps-site' ]; then cd .. && eval "mv $currentfolder generator-jps-site" && cd generator-jps-site; fi
 before_script:
   - 'npm install -g bower grunt-cli'
-  - 'bower install'
-  - 'grunt build'
-run:
   - 'grunt'
