@@ -11,7 +11,7 @@ module.exports = JpsSiteGenerator = yeoman.generators.Base.extend()
 #	 and adding an event listener to the 'end' event of the generator.	 
 JpsSiteGenerator::init = ->
 	@on 'end', ->
-		@installDependencies()	if @options['skip-install'] isnt true
+		@installDependencies() if @options['skip-install'] isnt true
 	@pkg = require('../package.json')
 
 #askFor - Prompt the user for questions related to the project generating.
@@ -70,11 +70,13 @@ JpsSiteGenerator::appFolders = ->
 	@mkdir 'app/images'
 	@mkdir 'app/scripts'
 	@mkdir 'app/styles'
+	@mkdir 'app/pages'
 	
 #appFiles - Copy all of the application specific files.
 JpsSiteGenerator::appFiles = ->
 	@copy 'feature.png', 'app/images/feature.png'
 	@copy '_index.html', 'app/index.html'
+	@copy '_main.html', 'app/pages/main.html'
 	@copy '_main.js', 'app/scripts/main.js'
 	@copy '_main.css', 'app/styles/main.css'
 
@@ -104,6 +106,6 @@ JpsSiteGenerator::travisFiles = ->
 
 #bowerInstaller - Execute the bower install with predefined libaries and save to the bower.json file.
 JpsSiteGenerator::bowerInstaller = ->
-	@bowerInstall([ 'jquery', 'bootstrap' ], save: true) if @options['skip-install'] isnt true
+	@bowerInstall([ 'jquery', 'jquery-tmpl', 'bootstrap' ], save: true) if @options['skip-install'] isnt true
 
 

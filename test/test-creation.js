@@ -17,7 +17,7 @@ describe('jps-site generator', function() {
     featureImage: 'images/feature.png'
   };
   mockFiles = ['.bowerrc', '.editorconfig', '.gitattributes', '.gitignore', '.jshintrc', '.travis.yml', 'bower.json', 'config.json', 'Gruntfile.js', 'package.json', 'app/images/feature.png', 'app/scripts/main.js', 'app/styles/main.css', 'app/index.html'];
-  mockFilePairs = [['app/index.html', RegExp("<title>" + mockAnswers.siteTitle + "</title>")], ['app/index.html', RegExp("<h1>" + mockAnswers.featureTitle + "</h1>")], ['app/index.html', RegExp("" + mockAnswers.featureBody)]];
+  mockFilePairs = [['app/index.html', RegExp("<title>" + mockAnswers.siteTitle + "</title>")], ['app/pages/main.html', RegExp("<h1>" + mockAnswers.featureTitle + "</h1>")], ['app/pages/main.html', RegExp("" + mockAnswers.featureBody)]];
   beforeEach(function(done) {
     return helpers.testDirectory(path.join(__dirname, 'temp'), (function(err) {
       if (err) {

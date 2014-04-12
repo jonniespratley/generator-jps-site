@@ -73,12 +73,14 @@ JpsSiteGenerator.prototype.appFolders = function() {
   this.mkdir('app');
   this.mkdir('app/images');
   this.mkdir('app/scripts');
-  return this.mkdir('app/styles');
+  this.mkdir('app/styles');
+  return this.mkdir('app/pages');
 };
 
 JpsSiteGenerator.prototype.appFiles = function() {
   this.copy('feature.png', 'app/images/feature.png');
   this.copy('_index.html', 'app/index.html');
+  this.copy('_main.html', 'app/pages/main.html');
   this.copy('_main.js', 'app/scripts/main.js');
   return this.copy('_main.css', 'app/styles/main.css');
 };
@@ -110,7 +112,7 @@ JpsSiteGenerator.prototype.travisFiles = function() {
 
 JpsSiteGenerator.prototype.bowerInstaller = function() {
   if (this.options['skip-install'] !== true) {
-    return this.bowerInstall(['jquery', 'bootstrap'], {
+    return this.bowerInstall(['jquery', 'jquery-tmpl', 'bootstrap'], {
       save: true
     });
   }
