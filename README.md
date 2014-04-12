@@ -1,4 +1,5 @@
-# generator-jps-site [![Build Status](https://secure.travis-ci.org/jonniespratley/generator-jps-site.png?branch=master)](https://travis-ci.org/jonniespratley/generator-jps-site)
+# generator-jps-site [
+![Build Status](https://secure.travis-ci.org/jonniespratley/generator-jps-site.png?branch=master)](https://travis-ci.org/jonniespratley/generator-jps-site)
 
 > [Yeoman](http://yeoman.io) generator
 

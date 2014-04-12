@@ -72,7 +72,7 @@ describe 'jps-site generator', ->
 		helpers.mockPrompt(@app, mockAnswers)
 		
 		#Skip installing of the bower and npm dependencies
-		@app.options['skip-install'] = true
+		@app.options['skip-install'] = false
 		
 		#Run the app and test for files and file contents
 		@app.run {}, ->

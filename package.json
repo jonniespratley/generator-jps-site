@@ -1,7 +1,7 @@
 {
 	"name": "generator-jps-site",
 	"version": "0.0.2",
-	"description": "Yeoman generator",
+	"description": "Yeoman generator for the Learning Yeoman book Chapter 6: Custom Generators.",
 	"license": "MIT",
 	"main": "app/index.js",
 	"repository": "jonniespratley/generator-jps-site",
@@ -40,7 +40,7 @@
 	},
 	"scripts": {
 		"start": "grunt",
-		"test": "grunt"
+		"test": "grunt test"
 	},
 	"main": "Gruntfile.js",
 	"directories": {
