@@ -6,9 +6,10 @@ module.exports = (grunt) ->
 	# Project configuration
 	grunt.initConfig
 		coffee:
+			options:
+				bare: true
 			compile:
 					expand: true
-					bare: true
 					cwd: './src'
 					src: ['**/*.coffee']
 					dest: './'
@@ -34,9 +35,5 @@ module.exports = (grunt) ->
 				]
 	
 	# Default task
-	grunt.registerTask 'default', [
-		'clean'
-		'coffee'
-		'mochaTest'
-		'clean'
-	]
+	grunt.registerTask 'default', ['clean', 'coffee', 'mochaTest']
+	grunt.registerTask 'test', ['clean', 'coffee', 'mochaTest', 'watch']
