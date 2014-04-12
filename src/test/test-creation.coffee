@@ -44,13 +44,13 @@ describe 'jps-site generator', ->
 			///
 		],
 		[
-			'app/index.html', 
+			'app/pages/main.html',
 			///
 				<h1>#{mockAnswers.featureTitle}<\/h1> 			#index > .jumbotron h1
 			///
 		],
 		[
-			'app/index.html', 
+			'app/pages/main.html',
 			///
 				#{mockAnswers.featureBody} 									#index > .jumbotron p
 			///
