@@ -17,8 +17,6 @@ PageGenerator.prototype.files = function() {
 
 PageGenerator.prototype.appendLink = function() {
   var htmlLink;
-  this.log('Append link');
-  this.name = this.name.toLowerCase();
   htmlLink = "<li>\n	<a href=\"#/" + this.name + "\">\n		" + this.name + "\n	</a>\n</li>";
   return this.appendToFile('app/index.html', 'ul.nav', htmlLink);
 };
