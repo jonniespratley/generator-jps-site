@@ -29,7 +29,7 @@ describe('jps-site generator', function() {
   });
   return it('creates expected files', function(done) {
     helpers.mockPrompt(this.app, mockAnswers);
-    this.app.options['skip-install'] = false;
+    this.app.options['skip-install'] = true;
     return this.app.run({}, function() {
       helpers.assertFile(mockFiles);
       helpers.assertFileContent(mockFilePairs);
