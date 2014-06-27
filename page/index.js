@@ -8,7 +8,11 @@ yeoman = require('yeoman-generator');
 module.exports = PageGenerator = yeoman.generators.NamedBase.extend();
 
 PageGenerator.prototype.init = function() {
-  return console.log("You called the page sub-generator with the argument " + this.name + ".");
+  if (this.name) {
+    return console.log("You called the page sub-generator with the argument " + this.name + ".");
+  } else {
+    throw new Error('You must provide a page name!');
+  }
 };
 
 PageGenerator.prototype.files = function() {

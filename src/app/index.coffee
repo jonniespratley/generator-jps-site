@@ -106,6 +106,6 @@ JpsSiteGenerator::travisFiles = ->
 
 #bowerInstaller - Execute the bower install with predefined libaries and save to the bower.json file.
 JpsSiteGenerator::bowerInstaller = ->
-	@bowerInstall([ 'jquery', 'jquery-tmpl', 'bootstrap' ], save: true) if @options['skip-install'] isnt true
+	@bowerInstall([ 'jquery#~2.1.0', 'jquery-tmpl', 'bootstrap#~3.x' ], save: true) if @options['skip-install'] isnt true
 
 

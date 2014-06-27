@@ -5,13 +5,16 @@ yeoman = require('yeoman-generator')
 module.exports = PageGenerator = yeoman.generators.NamedBase.extend()
 
 #Initialize sub-generator
-PageGenerator::init =  ->
-	console.log "You called the page sub-generator with the argument " + @name + "."
+PageGenerator::init = ->
+	if @name
+		console.log "You called the page sub-generator with the argument " + @name + "."
+	else
+		throw new Error('You must provide a page name!')
+		return
 
 #Write the file
 PageGenerator::files = ->
 	@copy '_page.html', "app/pages/#{@name}.html"
-
 
 #Handle appending the link
 PageGenerator::appendLink = ->

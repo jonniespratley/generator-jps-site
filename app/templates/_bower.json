@@ -12,9 +12,5 @@
 		"app/bower_components",
 		"app/images"
 	],
-	"dependencies": {
-		"jquery": "~2.1.0",
-		"jquery-tmpl": "*",
-		"bootstrap": "~3.1.1"
-	}
+	"dependencies": {}
 }
