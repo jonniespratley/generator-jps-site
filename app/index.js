@@ -112,7 +112,7 @@ JpsSiteGenerator.prototype.travisFiles = function() {
 
 JpsSiteGenerator.prototype.bowerInstaller = function() {
   if (this.options['skip-install'] !== true) {
-    return this.bowerInstall(['jquery', 'jquery-tmpl', 'bootstrap'], {
+    return this.bowerInstall(['jquery#~2.1.0', 'jquery-tmpl', 'bootstrap#~3.x'], {
       save: true
     });
   }
