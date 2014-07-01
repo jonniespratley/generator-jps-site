@@ -1,5 +1,8 @@
 // Generated on <%= (new Date).toISOString() %> using <%= pkg.name %> <%= pkg.version %>
 'use strict';
+var HOST = 'localhost';
+var PORT = 9000;
+var LIVERELOAD_PORT = 35729;
 
 module.exports = function(grunt) {
 	require('load-grunt-tasks')(grunt);
@@ -16,7 +19,7 @@ module.exports = function(grunt) {
 			},
 			//Watch for index file changes and build
 			livereload: {
-				files: ['app/index.html'],
+				files: ['app/index.html', 'app/scripts/**/*.js', 'app/styles/*.css'],
 				tasks: ['build']
 			},
 			//Watch any bower changes and inject scripts.
@@ -29,9 +32,9 @@ module.exports = function(grunt) {
 		//Server - The actual grunt server settings
 		connect: {
 			options: {
-				port: 9000,
-				livereload: 35729,
-				hostname: 'localhost'
+				port: PORT,
+				livereload: LIVERELOAD_PORT,
+				hostname: HOST
 			},
 			livereload: {
 				options: {

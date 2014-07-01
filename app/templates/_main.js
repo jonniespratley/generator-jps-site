@@ -1,5 +1,6 @@
 /* Script for <%= _.slugify(siteTitle) %> */
-window.<%= _.classify(siteTitle) %> = {
+var App = {
+	name: '<%= _.slugify(siteTitle) %>',
 	config: null,
 	Models: {},
 	Controllers: {},
@@ -39,9 +40,7 @@ window.<%= _.classify(siteTitle) %> = {
 	}
 };
 
-
-
 $(document).ready(function () {
-	window.<%= _.classify(siteTitle) %>.init();
+	window.App = App.init();
 });
 
