@@ -9,7 +9,18 @@ yeoman = require('yeoman-generator');
 
 chalk = require('chalk');
 
+
+/**
+jps-site-generator - This is an example generator.
+ */
+
 module.exports = JpsSiteGenerator = yeoman.generators.Base.extend();
+
+
+/**
+ *   init - This method initializes the generator by loading the package.json file
+ *   and adding an event listener to the 'end' event of the generator.
+ */
 
 JpsSiteGenerator.prototype.init = function() {
   this.on('end', function() {
@@ -19,6 +30,11 @@ JpsSiteGenerator.prototype.init = function() {
   });
   return this.pkg = require('../package.json');
 };
+
+
+/**
+ *askFor - Prompt the user for questions related to the project generating.
+ */
 
 JpsSiteGenerator.prototype.askFor = function() {
   var done;
@@ -63,11 +79,21 @@ JpsSiteGenerator.prototype.askFor = function() {
   }).bind(this));
 };
 
+
+/**
+ *config - Set the prompt answers in the config.json file
+ */
+
 JpsSiteGenerator.prototype.config = function() {
   this.config.set('sitetitle', this.siteTitle);
   this.config.set('feature.title', this.featureTitle);
   return this.config.set('version', this.pkg.version);
 };
+
+
+/**
+ *appFolders - Create all of the application specific folders.
+ */
 
 JpsSiteGenerator.prototype.appFolders = function() {
   this.mkdir('app');
@@ -77,6 +103,11 @@ JpsSiteGenerator.prototype.appFolders = function() {
   return this.mkdir('app/pages');
 };
 
+
+/**
+ *appFiles - Copy all of the application specific files.
+ */
+
 JpsSiteGenerator.prototype.appFiles = function() {
   this.copy('feature.png', 'app/images/feature.png');
   this.copy('_index.html', 'app/index.html');
@@ -85,30 +116,60 @@ JpsSiteGenerator.prototype.appFiles = function() {
   return this.copy('_main.css', 'app/styles/main.css');
 };
 
+
+/**
+ *projectFiles - Copy all of the project specific files.
+ */
+
 JpsSiteGenerator.prototype.projectfiles = function() {
   this.copy('_config.json', 'config.json');
   this.copy('_package.json', 'package.json');
   return this.copy('_Gruntfile.js', 'Gruntfile.js');
 };
 
+
+/**
+ *bowerFiles - Copy all of the bower specific files.
+ */
+
 JpsSiteGenerator.prototype.bowerFiles = function() {
   this.copy('bowerrc', '.bowerrc');
   return this.copy('_bower.json', 'bower.json');
 };
+
+
+/**
+ *editorFiles - Copy all files that handle code editing.
+ */
 
 JpsSiteGenerator.prototype.editorFiles = function() {
   this.copy('editorconfig', '.editorconfig');
   return this.copy('jshintrc', '.jshintrc');
 };
 
+
+/**
+  gitFiles - Copy all files that handle git repositorys
+ */
+
 JpsSiteGenerator.prototype.gitFiles = function() {
   this.copy('gitignore', '.gitignore');
   return this.copy('gitattributes', '.gitattributes');
 };
 
+
+/**
+ *travisFiles - Copy files for Travis CI.
+ */
+
 JpsSiteGenerator.prototype.travisFiles = function() {
   return this.copy('travis.yml', '.travis.yml');
 };
+
+
+/**
+ *bowerInstaller - Execute the bower install with predefined libaries and save to the bower.json file.
+ */
 
 JpsSiteGenerator.prototype.bowerInstaller = function() {
   if (this.options['skip-install'] !== true) {

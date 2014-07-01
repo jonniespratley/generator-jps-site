@@ -6,7 +6,9 @@ require('chai').should()
 
 describe 'jps-site generator', ->
 	
+	###*
 	#Mocked questions and answers
+	###
 	mockAnswers = 
 		siteTitle: 'My Test Site'
 		siteDesc: 'A modern site build to test.'
@@ -57,7 +59,9 @@ describe 'jps-site generator', ->
 		]
 	]
 	
-	#Before each test clean the test/temp folder and create a new generator.
+	###*
+	Before each test clean the test/temp folder and create a new generator.
+	###
 	beforeEach (done) ->
 		helpers.testDirectory path.join(__dirname, 'temp'), ((err) ->
 			done(err)	if err
@@ -65,16 +69,24 @@ describe 'jps-site generator', ->
 			done()
 		).bind(this)
 	
+	###*
 	#First test if the files that were created match what we expect.
+	###
 	it 'creates expected files', (done) ->
 		
+		###*
 		#Add some mock prompts for the user to answer
+		###
 		helpers.mockPrompt(@app, mockAnswers)
 		
+		###*
 		#Skip installing of the bower and npm dependencies
+		###
 		@app.options['skip-install'] = true
 		
+		###*
 		#Run the app and test for files and file contents
+		###
 		@app.run {}, ->
 			
 			#Assert files created match
