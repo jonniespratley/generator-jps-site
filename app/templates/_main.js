@@ -1,5 +1,5 @@
 /* Script for <%= _.slugify(siteTitle) %> */
-var App = {
+window.<%= _.classify(siteTitle) %> = {
 	config: null,
 	Models: {},
 	Controllers: {},
@@ -9,8 +9,9 @@ var App = {
 	 * @returns {App}
 	 */
 	init: function () {
-		console.log('<%= _.capitalize(siteTitle) %> is ready to rock and roll!');
+		console.log('<%= _.slugify(siteTitle) %> is ready to rock and roll!');
 		this.startRouter(window.location.hash);
+		$(document).trigger('hashchange');
 		return this;
 	},
 	/**
@@ -18,7 +19,7 @@ var App = {
 	 */
 	startRouter: function (path) {
 		$(window).on('hashchange', function (e) {
-			$('.active').removeClass('active');
+			$('.nav').find('.active').removeClass('active');
 			path = e.currentTarget.location.hash.replace('#/', '').toLowerCase();
 			App.loadPage(path);
 		});
@@ -32,12 +33,15 @@ var App = {
 			path = 'main';
 		}
 		$.get('pages/' + path + '.html').done(function (html) {
-			$('a[href="#/' + path + ']').parent().addClass('active');
+			$('[href="#/' + path + '"]').parent().toggleClass('active')
 			$('.page').html(html);
 		});
 	}
 };
 
+
+
 $(document).ready(function () {
-	window.App = App.init();
+	window.<%= _.classify(siteTitle) %>.init();
 });
+

@@ -1,4 +1,5 @@
 node_modules/
 temp/
+test/temp
 .DS_Store
 .idea/
