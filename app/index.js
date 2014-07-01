@@ -76,6 +76,32 @@ JpsSiteGenerator.prototype.config = function() {
 };
 
 /**
+ *projectFiles - Copy all of the project specific files.
+ */
+JpsSiteGenerator.prototype.projectfiles = function() {
+
+   //Copy package and Grunt files
+   this.copy('_package.json', 'package.json');
+   this.copy('_Gruntfile.js', 'Gruntfile.js');
+
+   //Copy all of the bower specific files.
+   this.copy('bowerrc', '.bowerrc');  
+   this.copy('_bower.json', 'bower.json');
+
+
+   //Copy all files that handle code editing.
+   this.copy('editorconfig', '.editorconfig');
+   this.copy('jshintrc', '.jshintrc');
+
+   //Copy all files that handle git repositorys
+   this.copy('gitignore', '.gitignore');
+   this.copy('gitattributes', '.gitattributes');
+
+   //Copy files for Travis CI.
+   this.copy('travis.yml', '.travis.yml');
+};
+
+/**
  *appFolders - Create all of the application specific folders.
  */
 JpsSiteGenerator.prototype.appFolders = function() {
@@ -98,44 +124,6 @@ JpsSiteGenerator.prototype.appFiles = function() {
   this.copy('_main.css', 'app/styles/main.css');
 };
 
-/**
- *projectFiles - Copy all of the project specific files.
- */
-JpsSiteGenerator.prototype.projectfiles = function() {
-  this.copy('_package.json', 'package.json');
-  this.copy('_Gruntfile.js', 'Gruntfile.js');
-};
-
-/**
- *bowerFiles - Copy all of the bower specific files.
- */
-JpsSiteGenerator.prototype.bowerFiles = function() {
-  this.copy('bowerrc', '.bowerrc');
-  this.copy('_bower.json', 'bower.json');
-};
-
-/**
- *editorFiles - Copy all files that handle code editing.
- */
-JpsSiteGenerator.prototype.editorFiles = function() {
-  this.copy('editorconfig', '.editorconfig');
-  this.copy('jshintrc', '.jshintrc');
-};
-
-/**
-  gitFiles - Copy all files that handle git repositorys
- */
-JpsSiteGenerator.prototype.gitFiles = function() {
-  this.copy('gitignore', '.gitignore');
-  this.copy('gitattributes', '.gitattributes');
-};
-
-/**
- *travisFiles - Copy files for Travis CI.
- */
-JpsSiteGenerator.prototype.travisFiles = function() {
-  this.copy('travis.yml', '.travis.yml');
-};
 
 /**
  *bowerInstaller - Execute the bower install with predefined libaries and save to the bower.json file.
