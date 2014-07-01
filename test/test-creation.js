@@ -27,19 +27,19 @@ describe('jps-site generator', function() {
     Before each test clean the test/temp folder and create a new generator.
    */
   beforeEach(function(done) {
-    return helpers.testDirectory(path.join(__dirname, 'temp'), (function(err) {
+    helpers.testDirectory(path.join(__dirname, 'temp'), (function(err) {
       if (err) {
         done(err);
       }
       this.app = helpers.createGenerator('jps-site:app', ['../../app']);
-      return done();
+      done();
     }).bind(this));
   });
 
   /**
      *First test if the files that were created match what we expect.
    */
-  return it('creates expected files', function(done) {
+  it('creates expected files', function(done) {
 
     /**
          *Add some mock prompts for the user to answer
@@ -54,10 +54,10 @@ describe('jps-site generator', function() {
     /**
          *Run the app and test for files and file contents
      */
-    return this.app.run({}, function() {
+    this.app.run({}, function() {
       helpers.assertFile(mockFiles);
       helpers.assertFileContent(mockFilePairs);
-      return done();
+      done();
     });
   });
 });

@@ -1,14 +1,10 @@
 'use strict';
-var assert;
-
-assert = require('assert');
-
+var assert = require('assert');
 require('chai').should();
 
 describe('jps-site generator', function() {
-  return it('can be imported without blowing up', function() {
-    var app;
-    app = require('../app');
-    return assert(app !== void 0);
+  it('can be imported without blowing up', function() {
+    var app = require('../app');
+    assert(app !== void 0);
   });
 });
