@@ -1,14 +1,10 @@
 'use strict';
-var JpsSiteGenerator, chalk, path, util, yeoman;
+var util = require('util');
+var path = require('path');
+var yeoman = require('yeoman-generator');
+var chalk = require('chalk');
+var JpsSiteGenerator;
 
-util = require('util');
-path = require('path');
-yeoman = require('yeoman-generator');
-chalk = require('chalk');
-
-/**
-jps-site-generator - This is an example generator.
- */
 module.exports = JpsSiteGenerator = yeoman.generators.Base.extend();
 
 /**
