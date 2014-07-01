@@ -124,7 +124,6 @@ JpsSiteGenerator.prototype.appFiles = function() {
   this.copy('_main.css', 'app/styles/main.css');
 };
 
-
 /**
  *bowerInstaller - Execute the bower install with predefined libaries and save to the bower.json file.
  */
