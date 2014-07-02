@@ -37,30 +37,60 @@ var mockFilePairs = [
 	['app/pages/main.html', RegExp( "" + mockAnswers.featureBody )]
 ];
 
+//Dependencie array of generators to include.
+var dependencies = [
+	'../../app',
+	'../../page'
+];
+
 describe( 'jps-site generator', function () {
 
 	//Before each test clean the test/temp folder and create a new generator.
 	beforeEach( function (done) {
+
+
+
+
+
 		helpers.testDirectory( path.join( __dirname, 'temp' ), (function (err) {
 			if (err) {
 				done( err );
 			}
-			this.app = helpers.createGenerator( 'jps-site:app', ['../../app'] );
+
+			//App generator
+			this.app = helpers.createGenerator( 'jps-site:app', ['../../app'], 'test-gen' );
+
+
 			done();
 		}).bind( this ) );
 	} );
 
 	//First test if the files that were created match what we expect.
 	it( 'creates expected files', function (done) {
+
 		//Add some mock prompts for the user to answer
 		helpers.mockPrompt( this.app, mockAnswers );
+
 		//Skip installing of the bower and npm dependencies
 		this.app.options['skip-install'] = true;
+
 		//Run the app and test for files and file contents
 		this.app.run( {}, function () {
 			helpers.assertFile( mockFiles );
 			helpers.assertFileContent( mockFilePairs );
 			done();
 		} );
+	} );
+
+
+
+} );
+
+describe( 'jps-site:page sub-generator', function () {
+	it( 'creates expected files', function (done) {
+		//App generator
+		this.page = helpers.createGenerator( 'jps-site:page', ['../../page'], 'test-gen' );
+
+		done();
 	} );
 } );
