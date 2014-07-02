@@ -20,7 +20,8 @@
 	"keywords": ["yeoman-generator", "learning-yeoman"],
 	"dependencies": {
 		"yeoman-generator": "~0.16.0",
-		"chalk": "~0.4.0"
+		"chalk": "~0.4.0",
+		"yosay": "^0.1.0"
 	},
 	"devDependencies": {
 		"grunt": "^0.4.4",
