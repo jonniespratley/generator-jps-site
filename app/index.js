@@ -17,8 +17,6 @@
 	};
 	MyGenerator.prototype.askFor = function () {
 		var done = this.async();
-
-		this.log(this.yeoman);
 		this.log(yosay('You are using JPS Site Yeoman generator.'));
 		this.prompts = [
 			{
