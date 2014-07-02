@@ -14,29 +14,28 @@ describe('jps-site generator', function() {
     featureBody: 'A modern site created by a Yeoman generator.',
     featureImage: 'images/feature.png'
   };
-  
+
   //Mock expected files
   var mockFiles = [
-    '.bowerrc', 
-    '.editorconfig', 
-    '.gitattributes', 
-    '.gitignore', 
-    '.jshintrc', 
-    '.travis.yml', 
-    'bower.json', 
-    'Gruntfile.js', 
+    '.bowerrc',
+    '.editorconfig',
+    '.gitattributes',
+    '.gitignore',
+    '.jshintrc',
+    '.travis.yml',
+    'bower.json',
+    'Gruntfile.js',
     'package.json',
-    'app/images/feature.png', 
-    'app/styles/main.css', 
-    'app/scripts/config.js',  
-    'app/scripts/main.js', 
+    'app/images/feature.png',
+    'app/styles/main.css',
+    'app/scripts/main.js',
     'app/index.html'
   ];
-  
+
   //Mock expected file contents
   var mockFilePairs = [
-    [ 'app/index.html', RegExp("<title>" + mockAnswers.siteTitle + "</title>") ], 
-    [ 'app/pages/main.html', RegExp("<h1>" + mockAnswers.featureTitle + "</h1>") ], 
+    [ 'app/index.html', RegExp("<title>" + mockAnswers.siteTitle + "</title>") ],
+    [ 'app/pages/main.html', RegExp("<h1>" + mockAnswers.featureTitle + "</h1>") ],
     [ 'app/pages/main.html', RegExp("" + mockAnswers.featureBody) ]
   ];
 
