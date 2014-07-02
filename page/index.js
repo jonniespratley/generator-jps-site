@@ -1,4 +1,4 @@
-"use strict";
+/* global  console, module, require */
 var util = require('util'), yeoman = require('yeoman-generator');
 
 //PageSubGenerator - handles creating a new page and appending a link.

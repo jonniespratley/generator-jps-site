@@ -1,6 +1,4 @@
-/* global describe, it, require, beforeEach */
-"use strict";
-
+/* global describe, it, require, beforeEach, console, module, __dirname, require */
 var path = require('path');
 var helpers = require('yeoman-generator').test;
 require('chai').should();
@@ -40,10 +38,7 @@ describe('jps-site generator', function () {
 		[ 'app/pages/main.html', new RegExp('<h1>' + mockAnswers.featureTitle + '</h1>') ],
 		[ 'app/pages/main.html', new RegExp('' + mockAnswers.featureBody) ]
 	];
-
-	/**
-	 Before each test clean the test/temp folder and create a new generator.
-	 */
+	//Before each test clean the test/temp folder and create a new generator.
 	beforeEach(function (done) {
 		helpers.testDirectory(path.join(__dirname, 'temp'), (function (err) {
 			if (err) {
@@ -53,25 +48,13 @@ describe('jps-site generator', function () {
 			done();
 		}).bind(this));
 	});
-
-	/**
-	 First test if the files that were created match what we expect.
-	 */
+	//First test if the files that were created match what we expect.
 	it('creates expected files', function (done) {
-
-		/**
-		 Add some mock prompts for the user to answer
-		 */
+		//Add some mock prompts for the user to answer
 		helpers.mockPrompt(this.app, mockAnswers);
-
-		/**
-		 Skip installing of the bower and npm dependencies
-		 */
+		//Skip installing of the bower and npm dependencies
 		this.app.options['skip-install'] = true;
-
-		/**
-		 Run the app and test for files and file contents
-		 */
+		//Run the app and test for files and file contents
 		this.app.run({}, function () {
 			helpers.assertFile(mockFiles);
 			helpers.assertFileContent(mockFilePairs);
