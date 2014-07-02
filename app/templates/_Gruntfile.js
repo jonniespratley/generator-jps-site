@@ -44,6 +44,16 @@ module.exports = function(grunt) {
 			}
 		},
 
+		//JSHint - Handle linting all source files
+		jshint:{
+			target:{
+				jshintrc: true,
+				src: [
+					'app/scripts/**/*.js'
+				]
+			}
+		},
+
 		//bowerInstall - This installs bower_component packages into specified files.
 		bowerInstall: {
 			target: {
@@ -54,7 +64,7 @@ module.exports = function(grunt) {
 		}
 	});
 
-	//Server 
+	//Server
 	grunt.registerTask('serve', function(target) {
 		console.log('running serve');
 		grunt.task.run(['bowerInstall', 'build', 'connect:livereload', 'watch']);

@@ -13,7 +13,6 @@
 		"app/images"
 	],
 	"dependencies": {
-		"jquery": "latest",
-		"bootstrap": "latest"
+		"jquery": "latest", "bootstrap": "latest", "handlebars": "latest"
 	}
 }

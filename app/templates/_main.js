@@ -34,7 +34,7 @@ var App = {
 			path = 'main';
 		}
 		$.get('pages/' + path + '.html').done(function (html) {
-			$('[href="#/' + path + '"]').parent().toggleClass('active')
+			$('[href="#/' + path + '"]').parent().toggleClass('active');
 			$('.page').html(html);
 		});
 	}
