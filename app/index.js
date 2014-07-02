@@ -23,31 +23,31 @@
 				type: 'input',
 				name: 'siteTitle',
 				message: 'What is the name of your site',
-				"default": 'My Site'
+				default: 'My Site'
 			},
 			{
 				type: 'input',
 				name: 'siteDesc',
 				message: 'What is the site description?',
-				"default": 'A modern site built with a Yeoman Generator.'
+				default: 'A modern site built with a Yeoman Generator.'
 			},
 			{
 				type: 'input',
 				name: 'featureTitle',
 				message: 'What is the feature?',
-				"default": 'Modern Site'
+				default: 'Modern Site'
 			},
 			{
 				type: 'input',
 				name: 'featureBody',
 				message: 'The feature description?',
-				"default": 'A modern site using modern tools & technologies.'
+				default: 'A modern site using modern tools & technologies.'
 			},
 			{
 				type: 'input',
 				name: 'featureImage',
 				message: 'The feature image?',
-				"default": 'images/feature.png'
+				default: 'images/feature.png'
 			}
 		];
 		this.prompt(this.prompts, (function (props) {

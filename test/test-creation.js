@@ -1,10 +1,12 @@
-'use strict';
+/* global describe, it, require, beforeEach */
+"use strict";
+
 var path = require('path');
 var helpers = require('yeoman-generator').test;
 require('chai').should();
 
 
-describe('jps-site generator', function() {
+describe('jps-site generator', function () {
 
 	//Mocked questions and answers
 	var mockAnswers = {
@@ -34,16 +36,16 @@ describe('jps-site generator', function() {
 
 	//Mock expected file contents
 	var mockFilePairs = [
-		[ 'app/index.html', RegExp("<title>" + mockAnswers.siteTitle + "</title>") ],
-		[ 'app/pages/main.html', RegExp("<h1>" + mockAnswers.featureTitle + "</h1>") ],
-		[ 'app/pages/main.html', RegExp("" + mockAnswers.featureBody) ]
+		[ 'app/index.html', new RegExp('<title>' + mockAnswers.siteTitle + '</title>') ],
+		[ 'app/pages/main.html', new RegExp('<h1>' + mockAnswers.featureTitle + '</h1>') ],
+		[ 'app/pages/main.html', new RegExp('' + mockAnswers.featureBody) ]
 	];
 
 	/**
 	 Before each test clean the test/temp folder and create a new generator.
 	 */
-	beforeEach(function(done) {
-		helpers.testDirectory(path.join(__dirname, 'temp'), (function(err) {
+	beforeEach(function (done) {
+		helpers.testDirectory(path.join(__dirname, 'temp'), (function (err) {
 			if (err) {
 				done(err);
 			}
@@ -55,7 +57,7 @@ describe('jps-site generator', function() {
 	/**
 	 First test if the files that were created match what we expect.
 	 */
-	it('creates expected files', function(done) {
+	it('creates expected files', function (done) {
 
 		/**
 		 Add some mock prompts for the user to answer
@@ -70,7 +72,7 @@ describe('jps-site generator', function() {
 		/**
 		 Run the app and test for files and file contents
 		 */
-		this.app.run({}, function() {
+		this.app.run({}, function () {
 			helpers.assertFile(mockFiles);
 			helpers.assertFileContent(mockFilePairs);
 			done();

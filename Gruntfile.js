@@ -8,8 +8,14 @@ module.exports = function (grunt) {
 		},
 		watch: {
 			compile: {
-				files: ['app/*.js', 'test/*.js'],
-				tasks: ['mochaTest']
+				files: ['app/*.js', 'page/*.js', 'test/*.js'],
+				tasks: ['jshint', 'mochaTest']
+			}
+		},
+		jshint:{
+			target:{
+				jshintrc: true,
+				src: ['app/*.js', 'page/*.js', 'test/*.js']
 			}
 		},
 		mochaTest: {
@@ -21,6 +27,6 @@ module.exports = function (grunt) {
 			}
 		}
 	});
-	grunt.registerTask('default', ['clean', 'mochaTest']);
+	grunt.registerTask('default', ['clean', 'jshint', 'mochaTest']);
 	grunt.registerTask('test', ['default']);
 };
