@@ -73,6 +73,7 @@ module.exports = function(grunt) {
 	//Build
 	grunt.registerTask('build', 'Building the project.', function() {
 		console.log('running build');
+		grunt.task.run(['jshint']);
 	});
 
 	//Default
