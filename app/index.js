@@ -1,54 +1,58 @@
 (function () {
 	'use strict';
-	var util = require( 'util' );
-	var path = require( 'path' );
-	var yeoman = require( 'yeoman-generator' );
-	var yosay = require( 'yosay' );
+	var util = require('util');
+	var path = require('path');
+	var yeoman = require('yeoman-generator');
+	var yosay = require('yosay');
 	var MyGenerator;
 
 	module.exports = MyGenerator = yeoman.generators.Base.extend();
-	MyGenerator.prototype.init = function() {
+	MyGenerator.prototype.init = function () {
 		this.pkg = require('../package.json');
-		this.on('end', function() {
+		this.on('end', function () {
 			if (this.options['skip-install'] !== true) {
 				this.installDependencies();
 			}
 		});
 	};
-	MyGenerator.prototype.askFor = function() {
+	MyGenerator.prototype.askFor = function () {
 		var done = this.async();
 
-		this.log( this.yeoman );
-		this.log( yosay( 'You are using JPS Site Yeoman generator.' ) );
+		this.log(this.yeoman);
+		this.log(yosay('You are using JPS Site Yeoman generator.'));
 		this.prompts = [
 			{
 				type: 'input',
 				name: 'siteTitle',
 				message: 'What is the name of your site',
 				"default": 'My Site'
-			}, {
+			},
+			{
 				type: 'input',
 				name: 'siteDesc',
 				message: 'What is the site description?',
 				"default": 'A modern site built with a Yeoman Generator.'
-			}, {
+			},
+			{
 				type: 'input',
 				name: 'featureTitle',
 				message: 'What is the feature?',
 				"default": 'Modern Site'
-			}, {
+			},
+			{
 				type: 'input',
 				name: 'featureBody',
 				message: 'The feature description?',
 				"default": 'A modern site using modern tools & technologies.'
-			}, {
+			},
+			{
 				type: 'input',
 				name: 'featureImage',
 				message: 'The feature image?',
 				"default": 'images/feature.png'
 			}
 		];
-		this.prompt(this.prompts, (function(props) {
+		this.prompt(this.prompts, (function (props) {
 			this.siteTitle = props.siteTitle;
 			this.siteDesc = props.siteDesc;
 			this.featureTitle = props.featureTitle;
