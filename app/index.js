@@ -78,6 +78,24 @@ JpsSiteGenerator.prototype.config = function () {
 	this.config.set( 'version', this.pkg.version );
 };
 
+
+/**
+ *appFolders - Create all of the application specific folders.
+ */
+JpsSiteGenerator.prototype.app = function () {
+	this.mkdir( 'app' );
+	this.mkdir( 'app/images' );
+	this.mkdir( 'app/scripts' );
+	this.mkdir( 'app/styles' );
+	this.mkdir( 'app/pages' );
+	this.copy( 'feature.png', 'app/images/feature.png' );
+	this.copy( '_index.html', 'app/index.html' );
+	this.copy( '_main.html', 'app/pages/main.html' );
+	this.copy( '_config.js', 'app/scripts/config.js' );
+	this.copy( '_main.js', 'app/scripts/main.js' );
+	this.copy( '_main.css', 'app/styles/main.css' );
+};
+
 /**
  *projectFiles - Copy all of the project specific files.
  */
@@ -103,28 +121,6 @@ JpsSiteGenerator.prototype.projectfiles = function () {
 	this.copy( 'travis.yml', '.travis.yml' );
 };
 
-/**
- *appFolders - Create all of the application specific folders.
- */
-JpsSiteGenerator.prototype.appFolders = function () {
-	this.mkdir( 'app' );
-	this.mkdir( 'app/images' );
-	this.mkdir( 'app/scripts' );
-	this.mkdir( 'app/styles' );
-	this.mkdir( 'app/pages' );
-};
-
-/**
- *appFiles - Copy all of the application specific files.
- */
-JpsSiteGenerator.prototype.appFiles = function () {
-	this.copy( 'feature.png', 'app/images/feature.png' );
-	this.copy( '_index.html', 'app/index.html' );
-	this.copy( '_main.html', 'app/pages/main.html' );
-	this.copy( '_config.js', 'app/scripts/config.js' );
-	this.copy( '_main.js', 'app/scripts/main.js' );
-	this.copy( '_main.css', 'app/styles/main.css' );
-};
 
 /**
  *bowerInstaller - Execute the bower install with predefined libaries and save to the bower.json file.
