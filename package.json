@@ -19,8 +19,7 @@
 		"test": "grunt test"
 	},
 	"files": [
-		"app",
-		"page"
+		"app"
 	],
 	"keywords": [
 		"yeoman-generator",
