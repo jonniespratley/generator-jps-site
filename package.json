@@ -1,6 +1,6 @@
 {
 	"name": "generator-jps-site",
-	"version": "0.0.4",
+	"version": "1.0.0",
 	"description": "Yeoman generator for the Learning Yeoman book Chapter 6: Custom Generators.",
 	"license": "MIT",
 	"main": "Gruntfile.js",
